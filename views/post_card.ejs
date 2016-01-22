@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1><%= title %></h1>
+<form action='<%= host%>' method="POST">
+    <input type="text" name="title" id="title" placeholder="Input title here">
+    <input type="text" name="imageA" id="imageA" placeholder="please upload image A">
+    <input type="text" name="imageB" id="imageB" placeholder="please upload image B">
+
+    <input type="submit" value="OK">
+</form>
+</body>
+</html>

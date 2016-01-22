@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1><%= title %></h1>
+<form action='<%= host%>' method="POST">
+    <input type="email" name="email" id="email" placeholder="ex: testemail@test.com">
+    <input type="password" name="pw" id="pw" placeholder="ex: **********">
+
+    <input type="submit" value="OK">
+</form>
+</body>
+</html>
