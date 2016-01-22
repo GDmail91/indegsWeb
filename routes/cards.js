@@ -18,9 +18,6 @@ router.get('/', function(req, res, next) {
     };
     // TODO 5개만 불러와지는거 제대로 확인해야함(현재 데이터가 1개뿐이라 테스트 불가)
     requestify.request(credentials.api_server+'/cards', options).then(function(response) {
-        console.log("onResult: (" + response.getCode() + ")");
-        console.log('data : '+JSON.stringify(response.getBody()));
-
         var getObj = response.getBody();
 
         console.log('로그인상태: '+req.session.isLogin);
@@ -62,9 +59,6 @@ router.get('/:card_id', function(req, res, next) {
     };
 
     requestify.request(credentials.api_server+'/cards/'+data.card_id, options).then(function(response) {
-        console.log("onResult: (" + response.getCode() + ")");
-        console.log('data : '+JSON.stringify(response.getBody()));
-
         var getObj = response.getBody();
 
         if(getObj.status) {
@@ -102,9 +96,6 @@ router.post('/', function(req, res, next) {
         };
 
         requestify.request(credentials.api_server+'/cards', options).then(function(response) {
-            console.log("onResult: (" + response.getCode() + ")");
-            console.log('data : '+JSON.stringify(response.getBody()));
-
             var getObj = response.getBody();
 
             if(getObj.status) {

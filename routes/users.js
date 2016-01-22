@@ -37,9 +37,6 @@ router.post('/join', function(req, res, next) {
     };
 
     requestify.request(credentials.api_server+'/users/join', options).then(function(response) {
-      console.log("onResult: (" + response.getCode() + ")");
-      console.log('data : '+JSON.stringify(response.getBody()));
-
       var getObj = response.getBody();
 
       if(getObj.status) {
@@ -88,9 +85,6 @@ router.post('/login', function(req, res, next) {
   };
 
   requestify.request(credentials.api_server+'/users/login', options).then(function(response) {
-    console.log("onResult: (" + response.getCode() + ")");
-    console.log('data : '+JSON.stringify(response.getBody()));
-
     var getObj = response.getBody();
 
     if(getObj.status) {
