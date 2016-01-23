@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="<%= host%>/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+<body>
+<div class="container">
+    <!-- 팝업 창 -->
+    <div class="row">
+        <div class="col-md-12"><p><%= msg %></p></div>
+        <button type="button" class="btn btn-primary btn-sm" onClick="returnWindow(<%= image_id %>)">확인</button>
+    </div>
+
+</div>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="<%= host%>/lib/bootstrap/js/bootstrap.min.js"></script>
+<script>
+    function returnWindow(image_id) {
+        image_id = typeof image_id !== 'undefined' ? image_id : 1;
+        opener.setImage(image_id, '<%=img%>');
+        window.close();
+    }
+</script>
+</body>
+</html>

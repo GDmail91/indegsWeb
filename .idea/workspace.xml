@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97fc6f61-6bb9-4fd6-ad27-0d5c5e689d87" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/routes/choose.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/choose.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/upload_image.ejs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/upload/upload_process.ejs" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/views/upload_image.ejs" afterPath="$PROJECT_DIR$/views/upload/upload_image.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes.js" afterPath="$PROJECT_DIR$/routes.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/cards.js" afterPath="$PROJECT_DIR$/routes/cards.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/users.js" afterPath="$PROJECT_DIR$/routes/users.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/card.ejs" afterPath="$PROJECT_DIR$/views/card.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/main.ejs" afterPath="$PROJECT_DIR$/views/main.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/post_card.ejs" afterPath="$PROJECT_DIR$/views/post_card.ejs" />
     </list>
     <ignored path="indegsWeb.iws" />
@@ -55,11 +49,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="upload_image.ejs" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/views/upload_image.ejs">
+          <file leaf-file-name="upload_process.ejs" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/views/upload/upload_process.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.68716097">
-                  <caret line="20" column="72" selection-start-line="20" selection-start-column="72" selection-end-line="20" selection-end-column="72" />
+                <state vertical-scroll-proportion="0.6564195">
+                  <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
                   <folding />
                 </state>
               </provider>
@@ -68,8 +62,8 @@
           <file leaf-file-name="post_card.ejs" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/views/post_card.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-18.321428">
-                  <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+                <state vertical-scroll-proportion="-16.285715">
+                  <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
                   <folding />
                 </state>
               </provider>
@@ -85,6 +79,16 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="upload_image.ejs" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/views/upload/upload_image.ejs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-4.071429">
+                  <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
         </leaf>
       </split-first>
       <split-second>
@@ -92,8 +96,8 @@
           <file leaf-file-name="cards.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/cards.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.4767642">
-                  <caret line="127" column="44" selection-start-line="127" selection-start-column="44" selection-end-line="127" selection-end-column="44" />
+                <state vertical-scroll-proportion="0.7710843">
+                  <caret line="105" column="73" selection-start-line="105" selection-start-column="73" selection-end-line="105" selection-end-column="73" />
                   <folding />
                 </state>
               </provider>
@@ -161,10 +165,12 @@
         <option value="$PROJECT_DIR$/routes.js" />
         <option value="$PROJECT_DIR$/routes/choose.js" />
         <option value="$PROJECT_DIR$/views/choose.ejs" />
-        <option value="$PROJECT_DIR$/views/post_card.ejs" />
         <option value="$PROJECT_DIR$/credentials.js" />
         <option value="$PROJECT_DIR$/routes/users.js" />
         <option value="$PROJECT_DIR$/views/upload_image.ejs" />
+        <option value="$PROJECT_DIR$/views/upload/upload_image.ejs" />
+        <option value="$PROJECT_DIR$/views/post_card.ejs" />
+        <option value="$PROJECT_DIR$/views/upload/upload_process.ejs" />
         <option value="$PROJECT_DIR$/routes/cards.js" />
       </list>
     </option>
@@ -238,6 +244,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="indegsWeb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="indegsWeb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="upload" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -348,6 +372,7 @@
       <recent name="C:\Project\Node\indegsWeb\views" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Project\Node\indegsWeb\views\upload" />
       <recent name="C:\Project\Node\indegsWeb\public" />
       <recent name="C:\Project\Node\indegsWeb\views\auth" />
     </key>
@@ -425,7 +450,13 @@
       <option name="project" value="LOCAL" />
       <updated>1453529342737</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="image upload test1">
+      <created>1453575662184</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1453575662184</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -495,21 +526,14 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="console.log delete" />
     <MESSAGE value="Login page, Main page sample" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login page, Main page sample" />
+    <MESSAGE value="image upload test1" />
+    <option name="LAST_COMMIT_MESSAGE" value="image upload test1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/bin/www">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -804,14 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/card.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.071429">
@@ -860,18 +876,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/post_card.ejs">
+    <entry file="file://$PROJECT_DIR$/credentials.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.321428">
-          <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/choose.js">
+    <entry file="file://$PROJECT_DIR$/routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -884,26 +900,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/credentials.js">
+    <entry file="file://$PROJECT_DIR$/views/upload/upload_image.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+        <state vertical-scroll-proportion="-4.071429">
+          <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/upload_image.ejs">
+    <entry file="file://$PROJECT_DIR$/views/post_card.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.68716097">
-          <caret line="20" column="72" selection-start-line="20" selection-start-column="72" selection-end-line="20" selection-end-column="72" />
+        <state vertical-scroll-proportion="-16.285715">
+          <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/upload/upload_process.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6564195">
+          <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/choose.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/cards.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4767642">
-          <caret line="127" column="44" selection-start-line="127" selection-start-column="44" selection-end-line="127" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.7710843">
+          <caret line="105" column="73" selection-start-line="105" selection-start-column="73" selection-end-line="105" selection-end-column="73" />
           <folding />
         </state>
       </provider>

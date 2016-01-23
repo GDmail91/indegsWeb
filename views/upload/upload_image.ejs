@@ -13,7 +13,7 @@
     <div class="container">
         <!-- 팝업 창 -->
         <div class="row my_form_control">
-            <form method="POST" action="<%=host %>/cards/image" name="reg_forum" enctype="multipart/form-data">
+            <form method="POST" action="<%=host %>/cards/image<% if(img) %>?img=<%=img%>" name="reg_forum" enctype="multipart/form-data">
                 <hr>
                 <div class="form-group">
                     <label for="somefile">Image Upload</label>

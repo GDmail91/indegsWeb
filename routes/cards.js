@@ -49,10 +49,11 @@ router.get('/upload_image', function(req, res, next) {
     if (!req.session.isLogin) {
         res.send({ status: false, msg: '로그인이 필요합니다.' });
     } else {
-        res.render('upload_image', {
+        res.render('upload/upload_image', {
             title: 'Upload Page',
             host: credentials.host_server,
-            api_host: credentials.api_server
+            api_host: credentials.api_server,
+            img: req.query.img,
         });
     }
 });
@@ -86,6 +87,7 @@ router.post('/', function(req, res, next) {
         res.send({ status: false, msg: '로그인이 필요합니다.' });
     } else {
         var data = {
+            my_session: JSON.stringify(req.session),
             'useremail': req.session.userinfo.useremail,
             'author': req.session.userinfo.username,
             'imageA': req.body.imageA,
@@ -134,8 +136,15 @@ router.post('/image', function(req, res, next) {
                 if (err) {
                     return res.send(err);
                 }
+                var getObj = JSON.parse(body);
 
-                res.send(body);
+                res.render('upload/upload_process', {
+                    title: 'Result Page',
+                    host: credentials.host_server,
+                    msg: getObj.msg,
+                    image_id: getObj.data,
+                    img: req.query.img,
+                });
             });
         });
     }
