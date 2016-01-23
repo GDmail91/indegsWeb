@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
         if(getObj.status) {
             res.statusCode = response.getCode();
             //res.render('cards', getObj);
-            res.render('main', { title: 'Main Page', cards: getObj.data });
+            res.render('main', { title: 'Main Page', host: credentials.host_server, cards: getObj.data });
         } else {
             res.statusCode = response.getCode();
             res.send('404 페이지 or 해당코드 페이지'+ getObj.msg);

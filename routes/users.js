@@ -66,7 +66,7 @@ router.post('/join', function(req, res, next) {
 router.get('/login', function(req, res, next) {
   res.render('auth/login', {
     title: 'Login Page',
-    host: credentials.host_server+'/users/login'
+    host: credentials.host_server
   });
 });
 

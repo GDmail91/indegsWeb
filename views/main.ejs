@@ -1,17 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-<body>
+<% include header.ejs %>
 <h1><%= title %></h1>
 <% cards.forEach(function(val, index, arr) {
     var data = val; %>
-
-    <div class="card"><%= data.title %></div>
+    <div class="col-sm-6 col-md-4 col-lg-4">
+        <div class="card-example post">
+            <div class="thumbnail">
+                <time> &nbsp;
+                </time>
+                <a style="cursor:pointer" onclick="javascript:viewBoard('item'" href="#" class="capton">
+                    <img src="<%= data.imageA%>">
+                    <img src="<%= data.imageB%>">
+                    <h4 class="list-group-item-heading"><%= data.title %></h4>
+                    <p class="list-group-item-text"><%= data.useremail %></p>
+                </a>
+            </div>
+        </div>
+    </div>
 
 <% })
 %>
-</body>
-</html>
+
+<% include footer.ejs %>

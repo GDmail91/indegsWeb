@@ -6,5 +6,4 @@ module.exports = function(app){
     app.use('/', routes);
     app.use('/users', users);
     app.use('/cards', cards);
-
 };
