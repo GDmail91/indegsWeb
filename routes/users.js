@@ -1,5 +1,5 @@
 var express = require('express');
-var requestify = require('requestify');
+var request = require('request');
 var credentials = require('../credentials');
 var router = express.Router();
 
@@ -29,22 +29,19 @@ router.post('/join', function(req, res, next) {
       && Validator.isAlphanumeric(data.username)  // charator only
       && (Validator.equals(data.gender, 'male') || Validator.equals(data.gender, 'female'))) {
 
-    // Email registration
-    var options = {
-      method: 'POST',
-      body: data,
-      dataType: 'json'
-    };
-
-    requestify.request(credentials.api_server+'/users/join', options).then(function(response) {
-      var getObj = response.getBody();
+      // Email registration
+    request.post({
+      url: credentials.api_server+'/users/join',
+      form: data,
+    }, function(err, httpResponse, body) {
+      var getObj = JSON.parse(body);
 
       if(getObj.status) {
-        res.statusCode = response.getCode();
+        res.statusCode = httpResponse.statusCode;
         //res.render('cards', getObj);
         res.send(getObj);
       } else {
-        res.statusCode = response.getCode();
+        res.statusCode = httpResponse.statusCode;
         res.send('404 페이지 or 해당코드 페이지'+getObj.msg);
       }
     });
@@ -78,18 +75,14 @@ router.post('/login', function(req, res, next) {
   };
 
   // Login processing
-  var options = {
-    method: 'POST',
-    body: data,
-    dataType: 'json'
-  };
-
-  requestify.request(credentials.api_server+'/users/login', options).then(function(response) {
-    var getObj = response.getBody();
+  request.post({
+    url: credentials.api_server+'/users/login',
+    form: data,
+  }, function(err, httpResponse, body) {
+    var getObj = JSON.parse(body);
 
     if(getObj.status) {
-      res.statusCode = response.getCode();
-      //res.render('cards', getObj);
+      res.statusCode = httpResponse.statusCode;
 
       req.session.isLogin = true;
       req.session.userinfo = {
@@ -99,7 +92,7 @@ router.post('/login', function(req, res, next) {
       // TODO redirecting
       res.send(getObj);
     } else {
-      res.statusCode = response.getCode();
+      res.statusCode = httpResponse.statusCode;
       res.send('404 페이지 or 해당코드 페이지'+getObj.msg);
     }
   });

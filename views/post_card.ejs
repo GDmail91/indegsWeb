@@ -1,17 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-<body>
-<h1><%= title %></h1>
-<form action='<%= host%>' method="POST">
-    <input type="text" name="title" id="title" placeholder="Input title here">
-    <input type="text" name="imageA" id="imageA" placeholder="please upload image A">
-    <input type="text" name="imageB" id="imageB" placeholder="please upload image B">
+<% include header.ejs %>
+<div class="page-header"><h1><%= title %></h1></div>
+<div class="row my_form_control">
+    <form method="post" action="<%=host %>/cards" name="reg_forum">
+        <hr>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <div class="form-group">
+            <label for="title">First Image</label>
+            <input type="text" class="form-control" id="imageA_id" placeholder="이미지 업로드를 하세요" readonly>
+            <button type="button" class="btn btn-primary btn-sm" id="imageA" onClick="post_card()">Upload</button>
+        </div>
+        <div class="form-group">
+            <label for="context">Second Image</label>
+            <input type="text" class="form-control" id="imageB_id" placeholder="이미지 업로드를 하세요" readonly>
+            <button type="button" class="btn btn-primary btn-sm" id="imageB" onClick="post_card()">Upload</button>
+        </div>
 
-    <input type="submit" value="OK">
-</form>
-</body>
-</html>
+        <hr>
+        <button type="submit" class="btn btn-primary btn-lg">제출하기</button>
+    </form>
+</div>
+
+<script>
+    function post_card() {
+        window.open('<%= host %>/cards/upload_image', '_blank', 'width=500, height=500, resizable=no');
+    }
+</script>
+<% include footer.ejs %>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="<%= host%>/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+<body>
+    <div class="container">
+        <!-- 팝업 창 -->
+        <div class="row my_form_control">
+            <form method="POST" action="<%=host %>/cards/image" name="reg_forum" enctype="multipart/form-data">
+                <hr>
+                <div class="form-group">
+                    <label for="somefile">Image Upload</label>
+                    <input type="file" id="somefile" name="somefile"></input>
+                    <p class="help-block">지원되는 확장자 : ex)jpg, png....</p>
+                </div>
+                <hr>
+                <button type="submit" class="btn btn-primary btn-sm">제출하기</button>
+            </form>
+        </div>
+
+    </div>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="<%= host%>/lib/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,33 +1,30 @@
 var express = require('express');
-var requestify = require('requestify');
+var request = require('request');
 var credentials = require('../credentials');
 var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    // startID, endID
     var data = {
         'startId': req.query.startId,
         'term': req.query.term
     };
 
-    var options = {
-        method: 'GET',
-        params: JSON.stringify(data),
-        dataType: 'json'
-    };
-    // TODO 5개만 불러와지는거 제대로 확인해야함(현재 데이터가 1개뿐이라 테스트 불가)
-    requestify.request(credentials.api_server+'/cards', options).then(function(response) {
-        var getObj = response.getBody();
+    request.get({
+        url: credentials.api_server + '/cards',
+        form: data,
+    }, function(err, httpResponse, body) {
+        var getObj = JSON.parse(body);
 
         console.log('로그인상태: '+req.session.isLogin);
         console.log('사용자정보: '+req.session.userinfo.useremail+', '+req.session.userinfo.username);
-        if(getObj.status) {
-            res.statusCode = response.getCode();
+
+        if(getObj.status || !err) {
+            res.statusCode = httpResponse.statusCode;
             //res.render('cards', getObj);
             res.render('main', { title: 'Main Page', host: credentials.host_server, cards: getObj.data });
         } else {
-            res.statusCode = response.getCode();
+            //res.statusCode = response.getCode();
             res.send('404 페이지 or 해당코드 페이지'+ getObj.msg);
         }
     });
@@ -41,11 +38,24 @@ router.get('/post', function(req, res, next) {
     } else {
         res.render('post_card', {
             title: 'Post Page',
-            host: credentials.host_server+'/cards'
+            host: credentials.host_server
         });
     }
 });
 
+/* GET card posting form */
+router.get('/upload_image', function(req, res, next) {
+    // login check
+    if (!req.session.isLogin) {
+        res.send({ status: false, msg: '로그인이 필요합니다.' });
+    } else {
+        res.render('upload_image', {
+            title: 'Upload Page',
+            host: credentials.host_server,
+            api_host: credentials.api_server
+        });
+    }
+});
 
 /* GET card listing. */
 router.get('/:card_id', function(req, res, next) {
@@ -53,20 +63,17 @@ router.get('/:card_id', function(req, res, next) {
         'card_id': req.params.card_id
     };
 
-    var options = {
-        method: 'GET',
-        dataType: 'json'
-    };
-
-    requestify.request(credentials.api_server+'/cards/'+data.card_id, options).then(function(response) {
-        var getObj = response.getBody();
+    request.get({
+        url: credentials.api_server + '/cards/'+data.card_id,
+        form: data,
+    }, function(err, httpResponse, body) {
+        var getObj = JSON.parse(body);
 
         if(getObj.status) {
-            res.statusCode = response.getCode();
-            //res.render('cards', getObj);
-            res.render('card', { title: 'Card Page', card: getObj.data });
+            res.statusCode = httpResponse.statusCode;
+            res.render('card', { title: 'Card Page', host: credentials.host_server, card: getObj.data });
         } else {
-            res.statusCode = response.getCode();
+            res.statusCode = httpResponse.statusCode;
             res.send('404 페이지 or 해당코드 페이지'+getObj.msg);
         }
     });
@@ -86,29 +93,53 @@ router.post('/', function(req, res, next) {
             'title': req.body.title,
         };
 
-        var options = {
-            method: 'POST',
-            body: data,
-            cookies: {
-                mySession: JSON.stringify(req.session)
-            },
-            dataType: 'json'
-        };
-
-        requestify.request(credentials.api_server+'/cards', options).then(function(response) {
-            var getObj = response.getBody();
+        request.post({
+            url: credentials.api_server + '/cards',
+            form: data,
+        }, function(err, httpResponse, body) {
+            var getObj = JSON.parse(body);
 
             if(getObj.status) {
-                res.statusCode = response.getCode();
+                res.statusCode = httpResponse.statusCode;
                 res.redirect(credentials.host_server+'/cards/'+getObj.data)
             } else {
-                res.statusCode = response.getCode();
+                res.statusCode = httpResponse.statusCode;
                 res.send('404 페이지 or 해당코드 페이지'+ getObj.msg);
             }
         });
     }
 });
 
+/* POST image listing */
+router.post('/image', function(req, res, next) {
+    // login check
+    if (!req.session.isLogin) {
+        res.send({ status: false, msg: '로그인이 필요합니다.' });
+    } else {
+        var formidable = require('formidable');
+        var form = new formidable.IncomingForm();
+
+        form.parse(req, function(err, fields, files) {
+            if(err) res.send('error 페이지 or 해당코드 페이지');
+
+            var fs = require('fs');
+            var form = {
+                my_session: JSON.stringify(req.session),
+                files: JSON.stringify(files)
+            };
+            request.post({
+                url: credentials.api_server+'/cards/images',
+                form: form
+            }, function optionalCallback(err, httpResponse, body) {
+                if (err) {
+                    return res.send(err);
+                }
+
+                res.send(body);
+            });
+        });
+    }
+});
 
 module.exports = router;
 
