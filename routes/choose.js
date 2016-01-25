@@ -1,5 +1,5 @@
 var express = require('express');
-var requestify = require('requestify');
+var request = require('request');
 var credentials = require('../credentials');
 var router = express.Router();
 
@@ -9,52 +9,18 @@ router.get('/:card_id', function(req, res, next) {
         'card_id': req.params.card_id
     };
 
-    var options = {
-        method: 'GET',
-        dataType: 'json'
-    };
-
-    requestify.request(credentials.api_server+'/cards/'+data.card_id, options).then(function(response) {
-        var getObj = response.getBody();
+    request.get({
+        url: credentials.api_server + '/cards/'+data.card_id,
+        form: data,
+    }, function(err, httpResponse, body) {
+        var getObj = JSON.parse(body);
 
         if(getObj.status) {
-            var data = {
-                'image_id': getObj.imageA
-            };
-            var options = {
-                method: 'GET',
-                dataType: 'json'
-            };
-            requestify.request(credentials.api_server+'/images/'+data.image_id, options).then(function(response) {
-                var getImageA = response.getBody();
-
-                if(getImageA.status) {
-                    var data = {
-                        'image_id': getObj.imageB
-                    };
-                    var options = {
-                        method: 'GET',
-                        dataType: 'json'
-                    };
-                    requestify.request(credentials.api_server+'/images/'+data.image_id, options).then(function(response) {
-                        var getImageB = response.getBody();
-
-                        if(getImageB.status) {
-                            res.statusCode = response.getCode();
-                            res.render('choose', {title: 'Choose Page', host: credentials.host_server, card: getObj.data, imageA: getImageA.data, imageB: getImageB.data });
-                        } else {
-                            res.statusCode = response.getCode();
-                            res.send('404 페이지 or 해당코드 페이지'+ getImageB.msg);
-                        }
-                    });
-                } else {
-                    res.statusCode = response.getCode();
-                    res.send('404 페이지 or 해당코드 페이지'+ getImageA.msg);
-                }
-            });
+            res.statusCode = httpResponse.statusCode;
+            res.render('choose', { title: 'Choose Page', host: credentials.host_server, card: getObj.data, imageA: JSON.parse(getObj.data.imageA), imageB: JSON.parse(getObj.data.imageB) });
         } else {
-            res.statusCode = response.getCode();
-            res.send('404 페이지 or 해당코드 페이지'+ getObj.msg);
+            res.statusCode = httpResponse.statusCode;
+            res.send('404 페이지 or 해당코드 페이지'+getObj.msg);
         }
     });
 });
@@ -75,9 +41,10 @@ router.post('/:card_id/:image_id', function(req, res, next) {
         };
 
         Card.postLikeCard(data, function(status, msg) {
-            if (status)
-                res.send({ status: true, msg: '좋아요 누름', data: {like: msg.like, liker: msg.liker } });
-            else
+            if (status) {
+                res.setHeader(302);
+                res.send({status: true, msg: '좋아요 누름', data: {like: msg.like, liker: msg.liker}});
+            } else
                 res.send({ status: false, msg: '에러', data: msg });
         });
     }

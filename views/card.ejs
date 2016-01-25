@@ -2,14 +2,14 @@
 <div class="page-header"><h1><%= title %><small><%= card.title %></small></h1></div>
 <div class="row">
     <div class="col-md-6 col-sm-6">
-        <img src="<%= card.imageA %>" class="img-responsive" alt="imageA">
-        <p><%= card.title %>
-        <%= card %></p>
+        <img src="/<%= imageA.image_url %>/<%= imageA.image_name%>" class="img-responsive" alt="imageA">
+        <hr>
+        <p><%= JSON.stringify(card) %></p>
     </div>
     <div class="col-md-6 col-sm-6">
-        <img src="<%= card.imageB %>" class="img-responsive" alt="imageB">
-        <p><%= card.title %>
-            <%= card %></p>
+        <img src="/<%= imageB.image_url %>/<%= imageB.image_name%>" class="img-responsive" alt="imageB">
+        <hr>
+        <p><%= JSON.stringify(card) %></p>
     </div>
 
 </div>
