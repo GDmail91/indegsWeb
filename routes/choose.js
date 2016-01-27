@@ -31,21 +31,25 @@ router.post('/:card_id/:image_id', function(req, res, next) {
     if (!req.session.isLogin) {
         res.send({ status: false, msg: '로그인이 필요합니다.' });
     } else {
-        var Card = require('../models/card.js');
-
         var data = {
+            my_session: JSON.stringify(req.session),
             'card_id': req.params.card_id,
             'useremail': req.session.userinfo.useremail,
             'username': req.session.userinfo.username,
             'image_id': req.params.image_id
         };
 
-        Card.postLikeCard(data, function(status, msg) {
-            if (status) {
-                res.setHeader(302);
-                res.send({status: true, msg: '좋아요 누름', data: {like: msg.like, liker: msg.liker}});
-            } else
-                res.send({ status: false, msg: '에러', data: msg });
+        request.post({
+            url: credentials.api_server + '/choose/'+data.card_id+'/'+data.image_id,
+            form: data,
+        }, function(err, httpResponse, body) {
+            var getObj = JSON.parse(body);
+            if(getObj.status) {
+                res.redirect('/cards/'+data.card_id);
+            } else {
+                res.statusCode = httpResponse.statusCode;
+                res.send('404 페이지 or 해당코드 페이지'+getObj.msg);
+            }
         });
     }
 });

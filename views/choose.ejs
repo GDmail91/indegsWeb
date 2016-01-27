@@ -2,22 +2,31 @@
 <div class="page-header"><h1><%= title %><small><%= card.title %></small></h1></div>
 <div class="row">
     <div class="col-md-6 col-sm-6">
-        <div class="text-center"><button class="btn btn-danger" onClick=chooseImage('<%=imageA._id%>')>Choice <span class="glyphicon glyphicon-heart-empty"></span></button></div>
+        <div class="text-center">
+            <form id="imageA" method="post" action="<%= host %>/choose/<%= card._id%>/<%= imageA._id%>">
+                <input type="hidden" name="name" value="value" />
+                <a onclick="$('#imageB').submit();" class="btn btn-danger" >
+                    Choice <span class="glyphicon glyphicon-heart-empty"></span>
+                </a>
+            </form>
+        </div>
         <img src="/<%= imageA.image_url %>/<%= imageA.image_name%>" class="img-responsive" alt="imageA" style="margin-top:15px">
         <hr>
     </div>
     <div class="col-md-6 col-sm-6">
-        <div class="text-center"><button class="btn btn-danger" onClick=chooseImage('<%=imageB._id%>')>Choice <span class="glyphicon glyphicon-heart-empty"></span></button></div>
+        <div class="text-center">
+            <form id="imageB" method="post" action="<%= host %>/choose/<%= card._id%>/<%= imageB._id%>">
+                <input type="hidden" name="name" value="value" />
+                <a onclick="$('#imageB').submit();" class="btn btn-danger" >
+                    Choice <span class="glyphicon glyphicon-heart-empty"></span>
+                </a>
+            </form>
+        </div>
         <img src="/<%= imageB.image_url %>/<%= imageB.image_name%>" class="img-responsive" alt="imageB" style="margin-top:15px">
         <hr>
     </div>
 
 </div>
 
-<script type="text/javascript">
-    function chooseImage(image) {
-        location.href='<%= host %>/choose/<%= card._id%>/'+image;
-    }
-</script>
 
 <% include footer.ejs %>

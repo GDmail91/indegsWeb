@@ -69,10 +69,15 @@ router.get('/:card_id', function(req, res, next) {
         form: data,
     }, function(err, httpResponse, body) {
         var getObj = JSON.parse(body);
+        var imageA = JSON.parse(getObj.data.imageA);
+        var imageB = JSON.parse(getObj.data.imageB);
 
         if(getObj.status) {
+            if (imageA.liker.indexOf(req.session.useremail)
+            || imageB.liker.indexOf(req.session.useremail))
+                return res.redirect('/choose/'+data.card_id);
             res.statusCode = httpResponse.statusCode;
-            res.render('card', { title: 'Card Page', host: credentials.host_server, card: getObj.data, imageA: JSON.parse(getObj.data.imageA), imageB: JSON.parse(getObj.data.imageB) });
+            res.render('card', { title: 'Card Page', host: credentials.host_server, card: getObj.data, imageA: imageA, imageB: imageB });
         } else {
             res.statusCode = httpResponse.statusCode;
             res.send('404 페이지 or 해당코드 페이지'+getObj.msg);

@@ -4,20 +4,26 @@
     <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
     <p><a class="btn btn-primary btn-lg" href="#" role="button">Download Now</a></p>
 </div>
-<% cards.forEach(function(val, index, arr) {
-    var data = val; %>
+<% cards.forEach(function(val, index, arr) { %>
     <div class="col-sm-6 col-md-4 col-lg-4">
         <div class="card-example post">
             <div class="thumbnail">
                 <time> &nbsp;
                 </time>
-                <a style="cursor:pointer" onclick="javascript:viewBoard('item')" href="<%= host%>/cards/<%= data._id%>" class="capton">
+                <a style="cursor:pointer" onclick="javascript:viewBoard('item')" href="<%= host%>/cards/<%= val._id%>" class="capton">
                     <div class="row">
-                        <img src="<%= data.imageA%>" alt="imageA" class="col-md-6 col-sm-6 img-rounded">
-                        <img src="<%= data.imageB%>" alt="imageB" class="col-md-6 col-sm-6 img-rounded">
+                        <% var imageA = JSON.parse(val.imageA);
+                        var imageB = JSON.parse(val.imageB);
+                        if(imageA == null || imageB == null) { %>
+                            <img src="/null_image" alt="imageA" class="col-md-6 col-sm-6 img-rounded">
+                            <img src="/null_image" alt="imageB" class="col-md-6 col-sm-6 img-rounded">
+                        <% } else { %>
+                            <img src="/<%= imageA.image_url %>/<%= imageA.image_name%>" alt="imageA" class="col-md-6 col-sm-6 img-rounded">
+                            <img src="/<%= imageB.image_url %>/<%= imageB.image_name%>" alt="imageB" class="col-md-6 col-sm-6 img-rounded">
+                        <% } %>
                     </div>
-                    <h4 class="list-group-item-heading"><%= data.title %></h4>
-                    <p class="list-group-item-text"><%= data.useremail %></p>
+                    <h4 class="list-group-item-heading"><%= val.title %></h4>
+                    <p class="list-group-item-text"><%= val.useremail %></p>
                 </a>
             </div>
         </div>
