@@ -4,12 +4,49 @@
     <div class="col-md-6 col-sm-6">
         <img src="/<%= imageA.image_url %>/<%= imageA.image_name%>" class="img-responsive" alt="imageA">
         <hr>
+        <!-- ajax로 변경할것 -->
+        <form class="form-inline" method="post" action="<%= host %>/cards/vote/<%= card._id%>/<%= imageA._id%>">
+            <div class="form-group">
+                <label for="imageA_vote">Vote </label>
+                <input type="text" class="form-control" name="vote_title" id="imageA_vote" placeholder="평가를 해주세요">
+            </div>
+            <button type="submit" class="btn btn-default">등록</button>
+        </form>
+        <ul class="list-group" style="margin-top:5px">
+            <% imageA.text_vote.forEach(function(val, index, arr) { %>
+            <li class="list-group-item"><%= val.vote_title %>
+                <% if (val.vote_member == username) { %>
+                <a href="/cards/vote/<%=card._id%>/<%=imageA._id%>/<%=val.vote_title%>" class="btn btn-danger pull-right" >
+                <% } else {%>
+                <a href="/cards/vote/<%=card._id%>/<%=imageA._id%>/<%=val.vote_title%>" class="btn btn-default pull-right" >
+                <% } %>
+                    <span class="glyphicon glyphicon-heart-empty"></span>
+                </a>
+            </li>
+            <% }) %>
+        </ul>
         <p><%= JSON.stringify(card) %></p>
     </div>
     <div class="col-md-6 col-sm-6">
         <img src="/<%= imageB.image_url %>/<%= imageB.image_name%>" class="img-responsive" alt="imageB">
         <hr>
-        <p><%= JSON.stringify(card) %></p>
+        <!-- ajax로 변경할것 -->
+        <form class="form-inline" method="post" action="<%= host %>/cards/vote/<%= card._id%>/<%= imageB._id%>">
+            <div class="form-group">
+                <label for="imageB_vote">Vote </label>
+                <input type="text" class="form-control" name="vote_title" id="imageB_vote" placeholder="평가를 해주세요">
+            </div>
+            <button type="submit" class="btn btn-default">등록</button>
+        </form>
+        <ul class="list-group">
+            <% imageB.text_vote.forEach(function(val, index, arr) { %>
+            <li class="list-group-item"><%= val.vote_title %>
+                <a href="/cards/vote/<%=card._id%>/<%=imageB._id%>" class="btn btn-default pull-right" >
+                    <span class="glyphicon glyphicon-heart-empty"></span>
+                </a>
+            </li>
+            <% }) %>
+        </ul>
     </div>
 </div>
 

@@ -82,13 +82,14 @@ router.get('/:card_id', function(req, res, next) {
         console.log(imageA.liker.indexOf(req.session.userinfo.username));
         if(getObj.status) {
             if (imageA.liker.indexOf(req.session.userinfo.username) == -1
-            || imageB.liker.indexOf(req.session.userinfo.username) == -1)
+            && imageB.liker.indexOf(req.session.userinfo.username) == -1)
                 return res.redirect('/choose/' + data.card_id);
 
             res.statusCode = httpResponse.statusCode;
             res.render('card', {
                 title: 'Card Page',
                 isLogin: req.session.isLogin,
+                username: req.session.userinfo.username,
                 host: credentials.host_server,
                 card: getObj.data,
                 imageA: imageA,
@@ -175,13 +176,36 @@ router.post('/image', function(req, res, next) {
                 // bucket info & file info
                 var bucketName = 'indegs-image-storage';
                 var keyName = 'images/'+image_name;
-console.log(keyName);
+
                 s3.putObject({
                     Bucket: bucketName,
                     Key: keyName,
                     Body: buffer
                 }, function (err) {
                     if (err) { throw err; }
+                    // Thubmnail image generate
+                    var smImage = new Buffer(0);
+                    gm(buffer)
+                        .resize("100", "100")
+                        .stream(function (err, stdout, stderr) {
+                            stdout.on('data', function (data) {
+                                smImage = Buffer.concat([smImage, data]);
+                            });
+                            stdout.on('end', function () {
+                                var data = {
+                                    Bucket: bucketName,
+                                    Key: 'thumb/images/' + image_name,
+                                    Body: smImage
+                                };
+                                s3.putObject(data, function (err, res) {
+                                    if (err) {
+                                        throw err;
+                                    }
+                                    console.log('thumbnail generate done');
+                                });
+                            });
+                        });
+                    // Rest API 사진정보 전송
                     var data = {
                         image_url: keyName,
                         image_name: files.somefile.name,
@@ -191,47 +215,22 @@ console.log(keyName);
                         my_session: JSON.stringify(req.session),
                         data: JSON.stringify(data)
                     };
+                    request.post({
+                        url: credentials.api_server+'/cards/images',
+                        form: form
+                    }, function optionalCallback(err, httpResponse, body) {
+                        if (err) {
+                            return res.send(err);
+                        }
+                        var getObj = JSON.parse(body);
 
-
-                    // Thubmnail image generate
-                    var smImage = new Buffer(0);
-                    gm(buffer)
-                        .resize("100", "100")
-                        .stream(function (err, stdout, stderr) {
-                            stdout.on('data', function(data) {
-                                smImage = Buffer.concat([smImage, data]);
-                            });
-                            stdout.on('end', function() {
-                                var data = {
-                                    Bucket: bucketName,
-                                    Key: 'thumb/'+keyName,
-                                    Body: smImage
-                                };
-                                s3.putObject(data, function(err, res) {
-                                    if (err) {
-                                        throw err;
-                                    }
-                                    console.log('thumbnail generate done');
-                                });
-                            });
-                        // Rest API 사진정보 전송
-                        request.post({
-                            url: credentials.api_server+'/cards/images',
-                            form: form
-                        }, function optionalCallback(err, httpResponse, body) {
-                            if (err) {
-                                return res.send(err);
-                            }
-                            var getObj = JSON.parse(body);
-
-                            res.render('upload/upload_process', {
-                                title: 'Result Page',
-                                isLogin: req.session.isLogin,
-                                host: credentials.host_server,
-                                msg: getObj.msg,
-                                image_id: getObj.data,
-                                img: req.query.img,
-                            });
+                        res.render('upload/upload_process', {
+                            title: 'Result Page',
+                            isLogin: req.session.isLogin,
+                            host: credentials.host_server,
+                            msg: getObj.msg,
+                            image_id: getObj.data,
+                            img: req.query.img,
                         });
                     });
                 });
@@ -255,6 +254,70 @@ router.put('/:card_id', function(req, res, next) {
         req.body.title
         */
 
+    }
+});
+
+/* POST new vote card */
+router.post('/vote/:card_id/:image_id', function(req, res, next) {
+    // login check
+    if (!req.session.isLogin) {
+        res.send({ status: false, msg: '로그인이 필요합니다.' });
+    } else {
+        var data = {
+            my_session: JSON.stringify(req.session),
+            'card_id': req.params.card_id,
+            'image_id': req.params.image_id,
+            'vote_title': req.body.vote_title,
+        };
+
+        request.post({
+            url: credentials.api_server + '/cards/vote/'+data.card_id+'/'+data.image_id,
+            form: data,
+        }, function(err, httpResponse, body) {
+            var getObj = JSON.parse(body);
+
+            if(getObj.status) {
+                res.statusCode = httpResponse.statusCode;
+                res.redirect(credentials.host_server+'/cards/'+data.card_id)
+            } else {
+                res.statusCode = httpResponse.statusCode;
+                res.send('404 페이지 or 해당코드 페이지'+ getObj.msg);
+            }
+        });
+    }
+});
+
+
+/* PUT vote like card */
+router.get('/vote/:card_id/:image_id/:vote_title', function(req, res, next) {
+    console.log(req.session);
+    // login check
+    if (!req.session.isLogin) {
+        res.send({ status: false, msg: '로그인이 필요합니다.' });
+    } else {
+        var data = {
+            my_session: JSON.stringify(req.session),
+            'card_id': req.params.card_id,
+            'image_id': req.params.image_id,
+            'vote_title': req.params.vote_title,
+        };
+
+        request.put({
+            url: credentials.api_server + '/cards/vote/'+data.card_id+'/'+data.image_id,
+            form: data,
+        }, function(err, httpResponse, body) {
+            var getObj = JSON.parse(body);
+
+            if(getObj.status) {
+                res.statusCode = httpResponse.statusCode;
+                res.redirect(credentials.host_server+'/cards/'+data.card_id)
+            } else {
+
+                console.log(getObj);
+                res.statusCode = httpResponse.statusCode;
+                res.send('404 페이지 or 해당코드 페이지'+ getObj.msg);
+            }
+        });
     }
 });
 
