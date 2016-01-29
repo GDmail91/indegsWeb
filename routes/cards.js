@@ -16,9 +16,10 @@ router.get('/', function(req, res, next) {
     }, function(err, httpResponse, body) {
         var getObj = JSON.parse(body);
 
-        console.log('로그인상태: '+req.session.isLogin);
-        console.log('사용자정보: '+req.session.userinfo.useremail+', '+req.session.userinfo.username);
-
+        if(req.session.isLogin) {
+            console.log('로그인상태: ' + req.session.isLogin);
+            console.log('사용자정보: ' + req.session.userinfo.useremail + ', ' + req.session.userinfo.username);
+        }
         if(getObj.status || !err) {
             res.statusCode = httpResponse.statusCode;
             //res.render('cards', getObj);
