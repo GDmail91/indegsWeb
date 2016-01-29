@@ -522,7 +522,13 @@
       <option name="project" value="LOCAL" />
       <updated>1454083010046</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="like assoc processing fix">
+      <created>1454089999255</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1454089999256</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView">
@@ -597,7 +603,8 @@
     <MESSAGE value="main card image testing(need resize)" />
     <MESSAGE value="image double save on S3 (stream copy)" />
     <MESSAGE value="text vote repair" />
-    <option name="LAST_COMMIT_MESSAGE" value="text vote repair" />
+    <MESSAGE value="like assoc processing fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="like assoc processing fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
