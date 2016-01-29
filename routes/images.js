@@ -6,7 +6,11 @@ var router = express.Router();
 /* GET thumb card listing. */
 router.get('/:image_url/thumb/:image_name', function(req, res, next) {
     var AWS = require('aws-sdk');
-    AWS.config.region = 'ap-northeast-2';
+    AWS.config.update({
+        accessKeyId: credentials.aws_access_key_id,
+        secretAccessKey: credentials.aws_secret_access_key,
+        "region": "ap-northeast-2"
+    });
 
     // bucket info & file info
     var bucketName = 'indegs-image-storage';
@@ -25,7 +29,11 @@ router.get('/:image_url/thumb/:image_name', function(req, res, next) {
 router.get('/:image_url/:image_name', function(req, res, next) {
 
     var AWS = require('aws-sdk');
-    AWS.config.region = 'ap-northeast-2';
+    AWS.config.update({
+        accessKeyId: credentials.aws_access_key_id,
+        secretAccessKey: credentials.aws_secret_access_key,
+        "region": "ap-northeast-2"
+    });
 
     // bucket info & file info
     var bucketName = 'indegs-image-storage';

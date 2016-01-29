@@ -165,7 +165,11 @@ router.post('/image', function(req, res, next) {
                 buffer = Buffer.concat([buffer, data]);
             });
             fileStream.on('end', function() {
-                AWS.config.region = 'ap-northeast-2';
+                AWS.config.update({
+                    accessKeyId: credentials.aws_access_key_id,
+                    secretAccessKey: credentials.aws_secret_access_key,
+                    "region": "ap-northeast-2"
+                });
                 var s3 = new AWS.S3();
 
                 // image name hashing
