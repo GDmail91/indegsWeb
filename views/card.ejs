@@ -1,10 +1,22 @@
 <% include header.ejs %>
 <div class="page-header"><h1><%= title %><small><%= card.title %></small></h1></div>
 <div class="row">
+    <div class="col-md-12 pull-right">
+        <a href="/choose/<%=card._id%>" class="btn btn-default">투표 다시하기</a>
+    </div>
     <div class="col-md-6 col-sm-6">
+        <% if(card.like == imageA._id) %>
         <img src="/<%= imageA.image_url %>/<%= imageA.image_name%>" class="img-responsive" alt="imageA">
         <hr>
-        <!-- ajax로 변경할것 -->
+        <!-- javascript로 liker 띄어주는거 추가할 것 -->
+        <% if(imageA.liker.indexOf(username) != -1){ %>
+            <button class="btn btn-danger">
+        <% } else { %>
+            <button class="btn btn-default">
+        <% } %>
+            <span class="glyphicon glyphicon-thumbs-up"></span><%= imageA.like %>
+        </button>
+        <!-- ajax로 변경할 것 -->
         <form class="form-inline" method="post" action="<%= host %>/cards/vote/<%= card._id%>/<%= imageA._id%>">
             <div class="form-group">
                 <label for="imageA_vote">Vote </label>
@@ -20,16 +32,23 @@
                 <% } else {%>
                 <a href="/cards/vote/<%=card._id%>/<%=imageA._id%>/<%=val.vote_title%>" class="btn btn-default pull-right" >
                 <% } %>
-                    <span class="glyphicon glyphicon-heart-empty"></span>
+                    <%= val.vote_count %> <span class="glyphicon glyphicon-heart-empty"></span>
                 </a>
             </li>
             <% }) %>
         </ul>
-        <p><%= JSON.stringify(card) %></p>
+
     </div>
     <div class="col-md-6 col-sm-6">
         <img src="/<%= imageB.image_url %>/<%= imageB.image_name%>" class="img-responsive" alt="imageB">
         <hr>
+        <% if(imageB.liker.indexOf(username) != -1){ %>
+            <button class="btn btn-danger">
+        <% } else { %>
+            <button class="btn btn-default">
+                <% } %>
+            <span class="glyphicon glyphicon-thumbs-up"></span><%= imageB.like %>
+        </button>
         <!-- ajax로 변경할것 -->
         <form class="form-inline" method="post" action="<%= host %>/cards/vote/<%= card._id%>/<%= imageB._id%>">
             <div class="form-group">
@@ -41,9 +60,13 @@
         <ul class="list-group">
             <% imageB.text_vote.forEach(function(val, index, arr) { %>
             <li class="list-group-item"><%= val.vote_title %>
-                <a href="/cards/vote/<%=card._id%>/<%=imageB._id%>" class="btn btn-default pull-right" >
-                    <span class="glyphicon glyphicon-heart-empty"></span>
-                </a>
+                <% if (val.vote_member == username) { %>
+                <a href="/cards/vote/<%=card._id%>/<%=imageB._id%>/<%=val.vote_title%>" class="btn btn-danger pull-right" >
+                    <% } else {%>
+                    <a href="/cards/vote/<%=card._id%>/<%=imageB._id%>/<%=val.vote_title%>" class="btn btn-default pull-right" >
+                        <% } %>
+                        <%= val.vote_count %> <span class="glyphicon glyphicon-heart-empty"></span>
+                    </a>
             </li>
             <% }) %>
         </ul>

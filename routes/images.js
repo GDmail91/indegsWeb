@@ -13,7 +13,6 @@ router.get('/:image_url/thumb/:image_name', function(req, res, next) {
     var keyName = 'thumb/images/'+req.params.image_url;
 
     var s3 = new AWS.S3();
-    console.log(keyName);
 
     res.writeHead(200, {'Content-Type': 'image/*' });
     s3.getObject({

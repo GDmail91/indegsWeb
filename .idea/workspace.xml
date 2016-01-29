@@ -6,7 +6,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/cards.js" afterPath="$PROJECT_DIR$/routes/cards.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/images.js" afterPath="$PROJECT_DIR$/routes/images.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/card.ejs" afterPath="$PROJECT_DIR$/views/card.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/main.ejs" afterPath="$PROJECT_DIR$/views/main.ejs" />
     </list>
     <ignored path="indegsWeb.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,13 +68,13 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="card.ejs" pinned="false" current-in-tab="true">
+          <file leaf-file-name="card.ejs" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/views/card.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.5533454">
-                  <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+                <state vertical-scroll-proportion="-3.392857">
+                  <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
                   <folding>
-                    <element signature="e#766#788#0#HTML" expanded="true" />
+                    <element signature="e#1266#1288#0#HTML" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -91,12 +90,14 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="main.ejs" pinned="false" current-in-tab="false">
+          <file leaf-file-name="main.ejs" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/views/main.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-5.428571">
-                  <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
-                  <folding />
+                <state vertical-scroll-proportion="0.10307414">
+                  <caret line="3" column="111" selection-start-line="3" selection-start-column="110" selection-end-line="3" selection-end-column="111" />
+                  <folding>
+                    <element signature="e#547#569#0#HTML" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -125,11 +126,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file leaf-file-name="cards.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="cards.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/cards.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.065404475">
-                  <caret line="292" column="29" selection-start-line="292" selection-start-column="29" selection-end-line="292" selection-end-column="29" />
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="204" column="31" selection-start-line="204" selection-start-column="31" selection-end-line="204" selection-end-column="31" />
                   <folding />
                 </state>
               </provider>
@@ -139,17 +140,17 @@
             <entry file="file://$PROJECT_DIR$/routes/images.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+                  <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="choose.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="choose.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/choose.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="56" column="57" selection-start-line="56" selection-start-column="57" selection-end-line="56" selection-end-column="57" />
+                <state vertical-scroll-proportion="0.4767642">
+                  <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -203,10 +204,10 @@
         <option value="$PROJECT_DIR$/views/header.ejs" />
         <option value="$PROJECT_DIR$/routes/aa.js" />
         <option value="$PROJECT_DIR$/views/main.ejs" />
-        <option value="$PROJECT_DIR$/routes/images.js" />
         <option value="$PROJECT_DIR$/views/choose.ejs" />
-        <option value="$PROJECT_DIR$/views/card.ejs" />
         <option value="$PROJECT_DIR$/routes/cards.js" />
+        <option value="$PROJECT_DIR$/views/card.ejs" />
+        <option value="$PROJECT_DIR$/routes/images.js" />
       </list>
     </option>
   </component>
@@ -515,7 +516,13 @@
       <option name="project" value="LOCAL" />
       <updated>1454069464400</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="text vote repair">
+      <created>1454083010046</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1454083010046</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView">
@@ -589,11 +596,12 @@
     <MESSAGE value="image upload testing" />
     <MESSAGE value="main card image testing(need resize)" />
     <MESSAGE value="image double save on S3 (stream copy)" />
-    <option name="LAST_COMMIT_MESSAGE" value="image double save on S3 (stream copy)" />
+    <MESSAGE value="text vote repair" />
+    <option name="LAST_COMMIT_MESSAGE" value="text vote repair" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -706,7 +714,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
           <folding>
-            <element signature="e#766#788#0#HTML" expanded="true" />
+            <element signature="e#1266#1288#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -715,7 +723,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-          <folding />
+          <folding>
+            <element signature="e#547#569#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -943,30 +953,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/choose.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="57" selection-start-line="56" selection-start-column="57" selection-end-line="56" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/images.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/main.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.428571">
-          <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/choose.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.75">
@@ -977,18 +963,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/card.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5533454">
-          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+        <state vertical-scroll-proportion="-3.392857">
+          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
           <folding>
-            <element signature="e#766#788#0#HTML" expanded="true" />
+            <element signature="e#1266#1288#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/main.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10307414">
+          <caret line="3" column="111" selection-start-line="3" selection-start-column="110" selection-end-line="3" selection-end-column="111" />
+          <folding>
+            <element signature="e#547#569#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/images.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/cards.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.065404475">
-          <caret line="292" column="29" selection-start-line="292" selection-start-column="29" selection-end-line="292" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="204" column="31" selection-start-line="204" selection-start-column="31" selection-end-line="204" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/choose.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4767642">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
           <folding />
         </state>
       </provider>

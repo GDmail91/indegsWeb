@@ -79,7 +79,6 @@ router.get('/:card_id', function(req, res, next) {
         var imageA = JSON.parse(getObj.data.imageA);
         var imageB = JSON.parse(getObj.data.imageB);
 
-        console.log(imageA.liker.indexOf(req.session.userinfo.username));
         if(getObj.status) {
             if (imageA.liker.indexOf(req.session.userinfo.username) == -1
             && imageB.liker.indexOf(req.session.userinfo.username) == -1)
@@ -290,7 +289,6 @@ router.post('/vote/:card_id/:image_id', function(req, res, next) {
 
 /* PUT vote like card */
 router.get('/vote/:card_id/:image_id/:vote_title', function(req, res, next) {
-    console.log(req.session);
     // login check
     if (!req.session.isLogin) {
         res.send({ status: false, msg: '로그인이 필요합니다.' });
@@ -312,8 +310,6 @@ router.get('/vote/:card_id/:image_id/:vote_title', function(req, res, next) {
                 res.statusCode = httpResponse.statusCode;
                 res.redirect(credentials.host_server+'/cards/'+data.card_id)
             } else {
-
-                console.log(getObj);
                 res.statusCode = httpResponse.statusCode;
                 res.send('404 페이지 or 해당코드 페이지'+ getObj.msg);
             }
