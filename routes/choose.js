@@ -17,7 +17,14 @@ router.get('/:card_id', function(req, res, next) {
 
         if(getObj.status) {
             res.statusCode = httpResponse.statusCode;
-            res.render('choose', { title: 'Choose Page', host: credentials.host_server, card: getObj.data, imageA: JSON.parse(getObj.data.imageA), imageB: JSON.parse(getObj.data.imageB) });
+            res.render('choose', {
+                title: 'Choose Page',
+                isLogin: req.session.isLogin,
+                host: credentials.host_server,
+                card: getObj.data,
+                imageA: JSON.parse(getObj.data.imageA),
+                imageB: JSON.parse(getObj.data.imageB)
+            });
         } else {
             res.statusCode = httpResponse.statusCode;
             res.send('404 페이지 or 해당코드 페이지'+getObj.msg);

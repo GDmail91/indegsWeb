@@ -8,6 +8,14 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+/* GET join listing. */
+router.get('/', function(req, res, next) {
+  res.render('auth/join', {
+    title: 'Join Page',
+    isLogin: req.session.isLogin,
+    host: credentials.host_server
+  });
+});
 
 /* POST join listing. */
 router.post('/join', function(req, res, next) {
@@ -63,6 +71,7 @@ router.post('/join', function(req, res, next) {
 router.get('/login', function(req, res, next) {
   res.render('auth/login', {
     title: 'Login Page',
+    isLogin: req.session.isLogin,
     host: credentials.host_server
   });
 });
@@ -96,6 +105,15 @@ router.post('/login', function(req, res, next) {
       res.send('404 페이지 or 해당코드 페이지'+getObj.msg);
     }
   });
+});
+
+/* GET logout listing. */
+router.get('/logout', function(req, res, next) {
+  req.session.isLogin = false;
+  req.session.userinfo = {};
+
+  console.log(req.headers.referer);
+  res.redirect(req.headers.referer);
 });
 
 module.exports = router;

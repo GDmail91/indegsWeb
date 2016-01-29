@@ -22,7 +22,12 @@ router.get('/', function(req, res, next) {
         if(getObj.status || !err) {
             res.statusCode = httpResponse.statusCode;
             //res.render('cards', getObj);
-            res.render('main', { title: 'Main Page', host: credentials.host_server, cards: getObj.data });
+            res.render('main', {
+                title: 'Main Page',
+                isLogin: req.session.isLogin,
+                host: credentials.host_server,
+                cards: getObj.data
+            });
         } else {
             //res.statusCode = response.getCode();
             res.send('404 페이지 or 해당코드 페이지'+ getObj.msg);
@@ -38,6 +43,7 @@ router.get('/post', function(req, res, next) {
     } else {
         res.render('post_card', {
             title: 'Post Page',
+            isLogin: req.session.isLogin,
             host: credentials.host_server
         });
     }
@@ -51,6 +57,7 @@ router.get('/upload_image', function(req, res, next) {
     } else {
         res.render('upload/upload_image', {
             title: 'Upload Page',
+            isLogin: req.session.isLogin,
             host: credentials.host_server,
             api_host: credentials.api_server,
             img: req.query.img,
@@ -72,12 +79,22 @@ router.get('/:card_id', function(req, res, next) {
         var imageA = JSON.parse(getObj.data.imageA);
         var imageB = JSON.parse(getObj.data.imageB);
 
+        console.log(imageA.liker.indexOf(req.session.userinfo.username));
         if(getObj.status) {
-            if (imageA.liker.indexOf(req.session.useremail)
-            || imageB.liker.indexOf(req.session.useremail))
-                return res.redirect('/choose/'+data.card_id);
+            if (imageA.liker.indexOf(req.session.userinfo.username) == -1
+            || imageB.liker.indexOf(req.session.userinfo.username) == -1)
+                return res.redirect('/choose/' + data.card_id);
+
             res.statusCode = httpResponse.statusCode;
-            res.render('card', { title: 'Card Page', host: credentials.host_server, card: getObj.data, imageA: imageA, imageB: imageB });
+            res.render('card', {
+                title: 'Card Page',
+                isLogin: req.session.isLogin,
+                host: credentials.host_server,
+                card: getObj.data,
+                imageA: imageA,
+                imageB: imageB
+            });
+
         } else {
             res.statusCode = httpResponse.statusCode;
             res.send('404 페이지 or 해당코드 페이지'+getObj.msg);
@@ -133,6 +150,8 @@ router.post('/image', function(req, res, next) {
             // S3 서버에 이미지 업로드 ##
             var AWS = require('aws-sdk');
             var fs = require('fs');
+            var gm = require('gm').subClass({ imageMagick: true });
+            var buffer = new Buffer(0);
 
             // Read in the file, convert it to base64, store to S3
             var fileStream = fs.createReadStream(files.somefile.path);
@@ -141,7 +160,10 @@ router.post('/image', function(req, res, next) {
                     throw err;
                 }
             });
-            fileStream.on('open', function () {
+            fileStream.on('data', function (data) {
+                buffer = Buffer.concat([buffer, data]);
+            });
+            fileStream.on('end', function() {
                 AWS.config.region = 'ap-northeast-2';
                 var s3 = new AWS.S3();
 
@@ -153,11 +175,11 @@ router.post('/image', function(req, res, next) {
                 // bucket info & file info
                 var bucketName = 'indegs-image-storage';
                 var keyName = 'images/'+image_name;
-
+console.log(keyName);
                 s3.putObject({
                     Bucket: bucketName,
                     Key: keyName,
-                    Body: fileStream
+                    Body: buffer
                 }, function (err) {
                     if (err) { throw err; }
                     var data = {
@@ -170,22 +192,46 @@ router.post('/image', function(req, res, next) {
                         data: JSON.stringify(data)
                     };
 
-                    // Rest API 사진정보 전송
-                    request.post({
-                        url: credentials.api_server+'/cards/images',
-                        form: form
-                    }, function optionalCallback(err, httpResponse, body) {
-                        if (err) {
-                            return res.send(err);
-                        }
-                        var getObj = JSON.parse(body);
 
-                        res.render('upload/upload_process', {
-                            title: 'Result Page',
-                            host: credentials.host_server,
-                            msg: getObj.msg,
-                            image_id: getObj.data,
-                            img: req.query.img,
+                    // Thubmnail image generate
+                    var smImage = new Buffer(0);
+                    gm(buffer)
+                        .resize("100", "100")
+                        .stream(function (err, stdout, stderr) {
+                            stdout.on('data', function(data) {
+                                smImage = Buffer.concat([smImage, data]);
+                            });
+                            stdout.on('end', function() {
+                                var data = {
+                                    Bucket: bucketName,
+                                    Key: 'thumb/'+keyName,
+                                    Body: smImage
+                                };
+                                s3.putObject(data, function(err, res) {
+                                    if (err) {
+                                        throw err;
+                                    }
+                                    console.log('thumbnail generate done');
+                                });
+                            });
+                        // Rest API 사진정보 전송
+                        request.post({
+                            url: credentials.api_server+'/cards/images',
+                            form: form
+                        }, function optionalCallback(err, httpResponse, body) {
+                            if (err) {
+                                return res.send(err);
+                            }
+                            var getObj = JSON.parse(body);
+
+                            res.render('upload/upload_process', {
+                                title: 'Result Page',
+                                isLogin: req.session.isLogin,
+                                host: credentials.host_server,
+                                msg: getObj.msg,
+                                image_id: getObj.data,
+                                img: req.query.img,
+                            });
                         });
                     });
                 });
