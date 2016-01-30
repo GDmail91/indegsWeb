@@ -81,7 +81,8 @@ router.get('/:card_id', function(req, res, next) {
         var imageB = JSON.parse(getObj.data.imageB);
 
         if(getObj.status) {
-            if (imageA.liker.indexOf(req.session.userinfo.username) == -1
+            if (!req.session.isLogin
+            ||  imageA.liker.indexOf(req.session.userinfo.username) == -1
             && imageB.liker.indexOf(req.session.userinfo.username) == -1)
                 return res.redirect('/choose/' + data.card_id);
 
