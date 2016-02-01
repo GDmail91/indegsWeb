@@ -191,7 +191,7 @@ router.post('/image', function(req, res, next) {
                     // Thubmnail image generate
                     var smImage = new Buffer(0);
                     gm(buffer)
-                        .resize("100", "100")
+                        .resize("300", "300")
                         .stream(function (err, stdout, stderr) {
                             stdout.on('data', function (data) {
                                 smImage = Buffer.concat([smImage, data]);
