@@ -1,0 +1,49 @@
+<% include ../header.ejs %>
+
+<div class="page-header"><h1><%= title %></h1></div>
+<div class="row my_form_control">
+    <form method="post" action="<%=host %>/users/join" name="join_form">
+        <hr>
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="ex) email@email.com">
+        </div>
+        <div class="form-group">
+            <label for="pw">Password</label>
+            <input type="password" class="form-control" name="pw" id="pw" placeholder="************">
+        </div>
+        <div class="form-group">
+            <label for="pw_confirm">Password Confirm</label>
+            <input type="password" class="form-control" name="pw_confirm" id="pw_confirm" placeholder="************">
+        </div>
+        <div class="form-group">
+            <label for="username">User Name</label>
+            <input type="text" class="form-control" name="username" id="username" placeholder="ex) 홍길동">
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" class="form-control" name="age" id="age" placeholder="ex) 24">
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="gender" id="male" value="male" checked>
+                    Male
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="gender" id="female" value="female">
+                    Female
+                </label>
+            </div>
+        </div>
+
+        <hr>
+        <button type="submit" class="btn btn-primary btn-lg">제출하기</button>
+    </form>
+</div>
+
+
+<% include ../footer.ejs %>

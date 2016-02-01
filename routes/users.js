@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET join listing. */
-router.get('/', function(req, res, next) {
+router.get('/join', function(req, res, next) {
   res.render('auth/join', {
     title: 'Join Page',
     isLogin: req.session.isLogin,
@@ -47,7 +47,7 @@ router.post('/join', function(req, res, next) {
       if(getObj.status) {
         res.statusCode = httpResponse.statusCode;
         //res.render('cards', getObj);
-        res.send(getObj);
+        res.redirect('/');
       } else {
         res.statusCode = httpResponse.statusCode;
         res.send('404 페이지 or 해당코드 페이지'+getObj.msg);
