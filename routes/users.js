@@ -98,6 +98,9 @@ router.post('/login', function(req, res, next) {
         username: getObj.data.username,
         useremail: getObj.data.email
       };
+      console.log(getObj);
+      if (getObj.data.email == "test01@test.com");
+        req.session.isAdmin = true;
       // TODO redirecting
       res.send(getObj);
     } else {
@@ -111,6 +114,7 @@ router.post('/login', function(req, res, next) {
 router.get('/logout', function(req, res, next) {
   req.session.isLogin = false;
   req.session.userinfo = {};
+  req.session.isAdmin = false;
 
   console.log(req.headers.referer);
   res.redirect(req.headers.referer);

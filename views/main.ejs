@@ -10,10 +10,10 @@
             <div class="thumbnail">
                 <time> &nbsp;
                 </time>
-                <a style="cursor:pointer" onclick="javascript:viewBoard('item')" href="<%= host%>/cards/<%= val._id%>" class="capton">
+                <a style="cursor:pointer" onclick="javascript:viewBoard('item')" href="<%= host %>/cards/<%= val._id %>" class="capton">
                     <div class="row">
-                        <% var imageA = JSON.parse(val.imageA);
-                        var imageB = JSON.parse(val.imageB);
+                        <% var imageA = val.imageA;
+                        var imageB = val.imageB;
                         if(imageA == null || imageB == null) { %>
                             <img src="/null_image" alt="imageA" class="col-md-6 col-sm-6 img-rounded">
                             <img src="/null_image" alt="imageB" class="col-md-6 col-sm-6 img-rounded">

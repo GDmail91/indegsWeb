@@ -1,0 +1,148 @@
+<% include ../header.ejs %>
+<div class="page-header"><h1><%= title %><small></small></h1></div>
+<div class="row" style="margin-bottom: 30px">
+    <ul class="nav nav-tabs">
+        <li role="presentation" <%if(sub_title == 'users') { %>class="active"<% } %>><a href="/admin/users">Users</a></li>
+        <li role="presentation" <%if(sub_title == 'cards') { %>class="active"<% } %>><a href="/admin/cards">Cards</a></li>
+        <li role="presentation" <%if(sub_title == 'images') { %>class="active"<% } %>><a href="/admin/images">Images</a></li>
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-8" style="text-align: left">
+        <% if (sub_title != 'images') { %>
+        <button type="button" class="btn btn-danger" onclick="get_chked_values()">Remove</button>
+        <% } %>
+    </div>
+    <div class="col-md-4">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 20px">
+    <div class="col-md-12">
+        <% if (typeof data == 'object') { %>
+        <table class="table">
+            <thead>
+            <tr>
+                <th><input type="checkbox" id="allChk" onclick="chked_all()"/></th>
+                <% if (sub_title == 'users') { %>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Profile</th>
+                <th>Job</th>
+                <% } else if (sub_title == 'cards') { %>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>User Email</th>
+                <th>Image A</th>
+                <th>Image B</th>
+                <th>Like</th>
+                <th>Post Date</th>
+                <% } else if (sub_title == 'images') { %>
+                <th>ID</th>
+                <th>Image Name</th>
+                <th>Image URL</th>
+                <th>Author</th>
+                <th>Liker</th>
+                <th>Like</th>
+                <th>Post Date</th>
+                <th>Vote</th>
+                <% } %>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <% var length = 0;
+                data.forEach(function(val, index, arr) { %>
+                    <th><input type="checkbox" name="idSeletor" value="<%=val._id%>"/></th>
+                    <% if (sub_title == 'users') { %>
+                    <td><%=val._id%></td>
+                    <td><%=val.email%></td>
+                    <td><%=val.username%></td>
+                    <td><%=val.gender%></td>
+                    <td><%=val.age%></td>
+                    <td><%=val.profile%></td>
+                    <td><%=val.job%></td>
+                    <% } else if (sub_title == 'cards') { %>
+                    <td><%=val._id%></td>
+                    <td><%=val.title%></td>
+                    <td><%=val.author%></td>
+                    <td><%=val.useremail%></td>
+                    <td><%=val.imageA._id%></td>
+                    <td><%=val.imageB._id%></td>
+                    <td><%=val.like%></td>
+                    <td><%=val.postDate%></td>
+                    <% } else if (sub_title == 'images') { %>
+                    <td><%=val._id%></td>
+                    <td><%=val.image_name%></td>
+                    <td><%=val.image_url%></td>
+                    <td><%=val.author%></td>
+                    <td><%=val.liker%></td>
+                    <td><%=val.like%></td>
+                    <td><%=val.postDate%></td>
+                    <td><% if(val.text_vote.length == 0){ %> Nothing <% } else { %><a href="">view vote</a><% } %></td>
+                    <% } %>
+                    <% length++;
+
+                    if (length == data.length) { %> </tr>
+                    <% } else { %>
+                    </tr>
+                    <tr>
+                    <% }
+                }) %>
+            </tbody>
+        </table>
+        <% } else { %>
+        표시할 데이터가 없습니다.
+        <% } %>
+    </div>
+    <div class="col-md-12" style="text-align: center">
+        <nav>
+            <ul class="pagination">
+                <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">2 </a></li>
+                <li><a href="#">3 </a></li>
+                <li><a href="#">4 </a></li>
+                <li><a href="#">5 </a></li>
+                <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    function chked_all() {
+        var chk = $("#allChk").is(":checked");
+        console.log(chk);
+        $(":checkbox[name='idSeletor']").prop("checked", chk);
+        console.log();
+    }
+
+    function get_chked_values(){
+        var chked_val = [];
+        $(":checkbox[name='idSeletor']:checked").each(function(pi,po){
+            chked_val.push(po.value);
+        });
+
+        $.ajax({
+            url: "/admin/<%=sub_title%>",
+            method: "DELETE",
+            data: { selected_id: JSON.stringify(chked_val) }
+        }).done(function(data) {
+            alert(data);
+            location.reload();
+        });
+    }
+</script>
+
+<% include ../footer.ejs %>

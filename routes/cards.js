@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 
         if(req.session.isLogin) {
             console.log('로그인상태: ' + req.session.isLogin);
-            console.log('사용자정보: ' + req.session.userinfo.useremail + ', ' + req.session.userinfo.username);
+            console.log('사용자정보: ' + req.session.userinfo.useremail + ', ' + req.session.userinfo.username + ', ' + req.session.isAdmin);
         }
         if(getObj.status || !err) {
             res.statusCode = httpResponse.statusCode;
