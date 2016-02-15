@@ -27,6 +27,7 @@ router.get('/users', function(req, res, next) {
                 title: 'Administrator',
                 sub_title: 'users',
                 isLogin: req.session.isLogin,
+                isAdmin: req.session.isAdmin,
                 host: credentials.host_server,
                 data: getObj.data
             });
@@ -91,6 +92,7 @@ router.get('/cards', function(req, res, next) {
                 title: 'Administrator',
                 sub_title: 'cards',
                 isLogin: req.session.isLogin,
+                isAdmin: req.session.isAdmin,
                 host: credentials.host_server,
                 data: getObj.data
             });
@@ -155,6 +157,7 @@ router.get('/images', function(req, res, next) {
                 title: 'Administrator',
                 sub_title: 'images',
                 isLogin: req.session.isLogin,
+                isAdmin: req.session.isAdmin,
                 host: credentials.host_server,
                 data: getObj.data
             });

@@ -20,6 +20,7 @@ router.get('/:card_id', function(req, res, next) {
             res.render('choose', {
                 title: 'Choose Page',
                 isLogin: req.session.isLogin,
+                isAdmin: req.session.isAdmin,
                 host: credentials.host_server,
                 card: getObj.data,
                 imageA: JSON.parse(getObj.data.imageA),

@@ -16,6 +16,7 @@ router.get('/join', function(req, res, next) {
   res.render('auth/join', {
     title: 'Join Page',
     isLogin: req.session.isLogin,
+    isAdmin: req.session.isAdmin,
     host: credentials.host_server
   });
 });
@@ -76,6 +77,7 @@ router.get('/login', function(req, res, next) {
   res.render('auth/login', {
     title: 'Login Page',
     isLogin: req.session.isLogin,
+    isAdmin: req.session.isAdmin,
     host: credentials.host_server
   });
 });

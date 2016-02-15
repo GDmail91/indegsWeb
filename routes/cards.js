@@ -27,6 +27,7 @@ router.get('/', function(req, res, next) {
             res.render('main', {
                 title: 'Main Page',
                 isLogin: req.session.isLogin,
+                isAdmin: req.session.isAdmin,
                 host: credentials.host_server,
                 cards: getObj.data
             });
@@ -46,6 +47,7 @@ router.get('/post', function(req, res, next) {
         res.render('post_card', {
             title: 'Post Page',
             isLogin: req.session.isLogin,
+            isAdmin: req.session.isAdmin,
             host: credentials.host_server
         });
     }
@@ -60,6 +62,7 @@ router.get('/upload_image', function(req, res, next) {
         res.render('upload/upload_image', {
             title: 'Upload Page',
             isLogin: req.session.isLogin,
+            isAdmin: req.session.isAdmin,
             host: credentials.host_server,
             api_host: credentials.api_server,
             img: req.query.img,
@@ -91,6 +94,7 @@ router.get('/:card_id', function(req, res, next) {
             res.render('card', {
                 title: 'Card Page',
                 isLogin: req.session.isLogin,
+                isAdmin: req.session.isAdmin,
                 username: req.session.userinfo.username,
                 host: credentials.host_server,
                 card: getObj.data,
@@ -233,6 +237,7 @@ router.post('/image', function(req, res, next) {
                         res.render('upload/upload_process', {
                             title: 'Result Page',
                             isLogin: req.session.isLogin,
+                            isAdmin: req.session.isAdmin,
                             host: credentials.host_server,
                             msg: getObj.msg,
                             image_id: getObj.data,
