@@ -10,6 +10,9 @@ router.get('/', function(req, res, next) {
 
 /* GET join listing. */
 router.get('/join', function(req, res, next) {
+  if (req.session.isLogin)
+    return res.redirect(req.headers.referer);
+
   res.render('auth/join', {
     title: 'Join Page',
     isLogin: req.session.isLogin,
@@ -30,11 +33,12 @@ router.post('/join', function(req, res, next) {
   //TODO name => username 으로 변경할것
 
   // validation check
+  var validation = /[a-힣]/;
   var Validator = require('validator');
   if(Validator.isEmail(data.email)  // email check
       && Validator.equals(data.pw, data.pw_confirm) // password confirm
       && Validator.isNumeric(data.age)  // number only
-      && Validator.isAlphanumeric(data.username)  // charator only
+      && validation.test(data.username) // character only
       && (Validator.equals(data.gender, 'male') || Validator.equals(data.gender, 'female'))) {
 
       // Email registration
@@ -59,7 +63,7 @@ router.post('/join', function(req, res, next) {
     console.log('유효성 검사 실패.');
     console.log('이메일: '+Validator.isEmail(data.email));
     console.log('비번: '+Validator.equals(data.pw, data.pw_confirm));
-    console.log('이름: '+Validator.isAlphanumeric(data.username));
+    console.log('이름: '+validation.test(data.username));
     console.log('나이: '+Validator.isNumeric(data.age));
     console.log('성별: '+(Validator.equals(data.gender, 'male') || Validator.equals(data.gender, 'female')));
 
@@ -99,7 +103,7 @@ router.post('/login', function(req, res, next) {
         useremail: getObj.data.email
       };
       console.log(getObj);
-      if (getObj.data.email == "test01@test.com");
+      if (getObj.data.email == credentials.admin_email);
         req.session.isAdmin = true;
       // TODO redirecting
       res.send(getObj);
