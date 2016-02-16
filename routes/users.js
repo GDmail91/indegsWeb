@@ -4,8 +4,126 @@ var credentials = require('../credentials');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get('/info', function(req, res, next) {
+  var data = {
+    'startId': req.query.startId,
+    'term': req.query.term,
+    'email': req.query.useremail
+  };
+
+  if (data.email == undefined) data.email = req.session.useremail;
+  var async = require('async');
+  async.waterfall([
+    function(callback) {
+        request.get({
+          url: credentials.api_server+'/users/emails',
+          form: data
+        }, function(err, httpResponse, body) {
+          var getObj = JSON.parse(body);
+
+          if(getObj.status) {
+            callback(null, getObj);
+          } else {
+            callback({ status: false, msg: getObj.msg });
+          }
+        });
+    },
+    function(back_data, callback) {
+      back_data.data.startId =data.startId;
+      back_data.data.term = data.term;
+      request.get({
+        url: credentials.api_server+'/cards/users/'+back_data.data._id,
+        qs :{
+          startId: data.startId,
+          term: data.term
+        },
+        form: back_data.data
+      }, function(err, httpResponse, body) {
+        if (err) return callback({ result: false, msg: '에러발생 원인:'+err});
+        var getObj = JSON.parse(body);
+
+        if(getObj.status) {
+
+          back_data.data.cards = getObj.data;
+          callback(null, back_data);
+        } else {
+          callback({ status: false, msg: getObj.msg });
+        }
+      });
+    }],
+    function(err, result) {
+      if (err) return res.send(err);
+      res.render('user_page', {
+        title: 'User page',
+        sub_title: 'Profile',
+        isLogin: req.session.isLogin,
+        isAdmin: req.session.isAdmin,
+        host: credentials.host_server,
+        data: result.data
+      });
+  });
+});
+
+// TODO remove
+/* GET users cards. */
+router.get('/cards', function(req, res, next) {
+  var data = {
+    'startId': req.query.startId,
+    'term': req.query.term,
+    'email': req.query.useremail
+  };
+
+  if (data.email == undefined) data.email = req.session.useremail;
+  var async = require('async');
+  async.waterfall([
+        function(callback) {
+          request.get({
+            url: credentials.api_server+'/users/emails',
+            form: data
+          }, function(err, httpResponse, body) {
+            var getObj = JSON.parse(body);
+
+            if(getObj.status) {
+              callback(null, getObj);
+            } else {
+              callback({ status: false, msg: getObj.msg });
+            }
+          });
+        },
+        function(back_data, callback) {
+          back_data.data.startId =data.startId;
+          back_data.data.term = data.term;
+          request.get({
+            url: credentials.api_server+'/cards/users/'+back_data.data._id,
+            qs :{
+              startId: data.startId,
+              term: data.term
+            },
+            form: back_data.data
+          }, function(err, httpResponse, body) {
+            if (err) return callback({ result: false, msg: '에러발생 원인:'+err});
+            var getObj = JSON.parse(body);
+
+            if(getObj.status) {
+
+              back_data.data.cards = getObj.data;
+              callback(null, back_data);
+            } else {
+              callback({ status: false, msg: getObj.msg });
+            }
+          });
+        }],
+      function(err, result) {
+        if (err) return res.send(err);
+        res.render('user_page', {
+          title: 'User page',
+          sub_title: 'My Cards',
+          isLogin: req.session.isLogin,
+          isAdmin: req.session.isAdmin,
+          host: credentials.host_server,
+          data: result.data
+        });
+      });
 });
 
 /* GET join listing. */
@@ -105,7 +223,7 @@ router.post('/login', function(req, res, next) {
         useremail: getObj.data.email
       };
       console.log(getObj);
-      if (getObj.data.email == credentials.admin_email);
+      if (getObj.data.email == credentials.admin_email)
         req.session.isAdmin = true;
       // TODO redirecting
       res.send(getObj);

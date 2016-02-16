@@ -1,0 +1,93 @@
+<% include header.ejs %>
+<div class="page-header"><h1><%= title %><small> name: <%= data.username %></small></h1></div>
+<div class="row" style="margin-bottom: 30px">
+    <ul class="nav nav-tabs">
+        <!-- DATA는 사용자정보/카드목록 다왔으니 ajax로 돌리거나 react 에서 바꿔가면서 출력하면 될듯 -->
+        <li role="presentation" <%if(sub_title == 'Profile') { %>class="active"<% } %>><a href="/users/info?useremail=<%= data.email%>">Profile</a></li>
+        <li role="presentation" <%if(sub_title == 'My Cards') { %>class="active"<% } %>><a href="/users/cards?useremail=<%= data.email%>">My Cards</a></li>
+        <li role="presentation" <%if(sub_title == 'Analyze') { %>class="active"<% } %>><a href="">some</a></li>
+    </ul>
+</div>
+<div class="row">
+    <%
+    if (sub_title == 'My Cards') {      // 내카드 목록 보기
+        if (typeof data.cards == 'object') {
+        data.cards.forEach(function(val, index, arr) { %>
+        <div class="col-sm-6 col-md-4 col-lg-4">
+            <div class="card-example post">
+                <div class="thumbnail">
+                    <time> &nbsp;
+                    </time>
+                    <a style="cursor:pointer" onclick="javascript:viewBoard('item')" href="<%= host %>/cards/<%= val._id %>" class="capton">
+                        <div class="row">
+                            <% var imageA = val.imageA;
+                                var imageB = val.imageB;
+                            if(imageA == null || imageB == null) { %>
+                            <img src="/null_image" alt="imageA" class="col-md-6 col-sm-6 img-rounded">
+                            <img src="/null_image" alt="imageB" class="col-md-6 col-sm-6 img-rounded">
+                            <% } else { %>
+                            <img src="/<%= imageA.image_url %>/thumb/<%= imageA.image_name%>" alt="imageA" class="col-md-6 col-sm-6 img-rounded">
+                            <img src="/<%= imageB.image_url %>/thumb/<%= imageB.image_name%>" alt="imageB" class="col-md-6 col-sm-6 img-rounded">
+                            <% } %>
+                        </div>
+                        <h4 class="list-group-item-heading"><%= val.title %></h4>
+                        <p class="list-group-item-text"><%= val.useremail %></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <% });
+        } else { %>
+        <div class="col-md-12">
+            게시글이 없습니다.
+        </div>
+        <% }
+    } else if (sub_title == 'Profile') {  // 프로필 보기 %>
+        <div class="row my_form_control">
+                <form method="put" action="<%=host%>/users" name="profile_form">
+            <hr>
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="ex) email@email.com" value="<%=data.email%>" disabled>
+            </div>
+            <div class="form-group">
+                <label for="pw">Password</label>
+                <input type="password" class="form-control" name="pw" id="pw" placeholder="************">
+            </div>
+            <div class="form-group">
+                <label for="pw_confirm">Password Confirm</label>
+                <input type="password" class="form-control" name="pw_confirm" id="pw_confirm" placeholder="************">
+            </div>
+            <div class="form-group">
+                <label for="username">User Name</label>
+                <input type="text" class="form-control" name="username" id="username" placeholder="ex) 홍길동" value="<%=data.username%>">
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" name="age" id="age" placeholder="ex) 24" value="<%=data.age%>">
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="gender" id="male" value="male" <% if(data.gender == "male") { %>checked<% } %>>
+                        Male
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="gender" id="female" value="female" <% if(data.gender == "female") { %>checked<% } %>>
+                        Female
+                    </label>
+                </div>
+            </div>
+
+            <hr>
+            <button type="submit" class="btn btn-primary btn-lg">제출하기</button>
+            </form>
+        </div>
+    <% }%>
+</div>
+
+<% include footer.ejs %>
