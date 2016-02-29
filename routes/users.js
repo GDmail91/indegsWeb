@@ -219,6 +219,7 @@ router.post('/login', function(req, res, next) {
 
       req.session.isLogin = true;
       req.session.userinfo = {
+        user_id: getObj.data.user_id,
         username: getObj.data.username,
         useremail: getObj.data.email
       };
