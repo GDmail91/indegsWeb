@@ -118,7 +118,7 @@ router.post('/', function(req, res, next) {
         var data = {
             my_session: JSON.stringify(req.session),
             'useremail': req.session.userinfo.useremail,
-            'author': req.session.userinfo.username,
+            'author': req.session.userinfo.user_id,
             'imageA': req.body.imageA,
             'imageB': req.body.imageB,
             'title': req.body.title,

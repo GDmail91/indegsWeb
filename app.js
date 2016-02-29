@@ -66,8 +66,12 @@ if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
+      title: 'Sorry, cannot find service',
+      isLogin: req.session.isLogin,
+      isAdmin: req.session.isAdmin,
+      host: credentials.host_server,
       message: err.message,
-      error: err
+      error: {status : err.status || 500}
     });
   });
 }
@@ -77,8 +81,12 @@ if (app.get('env') === 'development') {
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
+    title: 'Sorry, cannot find service',
+    isLogin: req.session.isLogin,
+    isAdmin: req.session.isAdmin,
+    host: credentials.host_server,
     message: err.message,
-    error: {}
+    error: {status : err.status || 500}
   });
 });
 
