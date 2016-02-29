@@ -172,8 +172,9 @@ router.post('/join', function(req, res, next) {
         //res.render('cards', getObj);
         res.redirect('/');
       } else {
-        res.statusCode = httpResponse.statusCode;
-        res.send('404 페이지 or 해당코드 페이지'+getObj.msg);
+        var err = new Error('Not Found');
+        err.status = httpResponse.statusCode;
+        next(err);
       }
     });
 
@@ -229,8 +230,9 @@ router.post('/login', function(req, res, next) {
       // TODO redirecting
       res.send(getObj);
     } else {
-      res.statusCode = httpResponse.statusCode;
-      res.send('404 페이지 or 해당코드 페이지'+getObj.msg);
+      var err = new Error('Not Found');
+      err.status = httpResponse.statusCode;
+      next(err);
     }
   });
 });

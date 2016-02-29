@@ -32,8 +32,9 @@ router.get('/users', function(req, res, next) {
                 data: getObj.data
             });
         } else {
-            res.statusCode = httpResponse.statusCode;
-            res.send('404 페이지 or 해당코드 페이지'+ getObj.msg);
+            var err = new Error('Not Found');
+            err.status = httpResponse.statusCode;
+            next(err);
         }
     });
 });
@@ -62,8 +63,9 @@ router.delete('/users', function(req, res, next) {
             // TODO 수정 하기전 위치 기억해야 할 듯
             res.send('삭제되었습니다.');
         } else {
-            res.statusCode = httpResponse.statusCode;
-            res.send('404 페이지 or 해당코드 페이지'+ getObj.msg);
+            var err = new Error('Not Found');
+            err.status = httpResponse.statusCode;
+            next(err);
         }
     });
 });
@@ -97,8 +99,9 @@ router.get('/cards', function(req, res, next) {
                 data: getObj.data
             });
         } else {
-            res.statusCode = httpResponse.statusCode;
-            res.send('404 페이지 or 해당코드 페이지'+ getObj.msg);
+            var err = new Error('Not Found');
+            err.status = httpResponse.statusCode;
+            next(err);
         }
     });
 });
@@ -127,8 +130,9 @@ router.delete('/cards', function(req, res, next) {
             // TODO 수정 하기전 위치 기억해야 할 듯
             res.send('삭제되었습니다.');
         } else {
-            res.statusCode = httpResponse.statusCode;
-            res.send('404 페이지 or 해당코드 페이지'+ getObj.msg);
+            var err = new Error('Not Found');
+            err.status = httpResponse.statusCode;
+            next(err);
         }
     });
 });
@@ -162,8 +166,9 @@ router.get('/images', function(req, res, next) {
                 data: getObj.data
             });
         } else {
-            res.statusCode = httpResponse.statusCode;
-            res.send('404 페이지 or 해당코드 페이지'+ getObj.msg);
+            var err = new Error('Not Found');
+            err.status = httpResponse.statusCode;
+            next(err);
         }
     });
 });

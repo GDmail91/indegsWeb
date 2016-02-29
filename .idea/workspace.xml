@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="97fc6f61-6bb9-4fd6-ad27-0d5c5e689d87" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/admin.js" afterPath="$PROJECT_DIR$/routes/admin.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/cards.js" afterPath="$PROJECT_DIR$/routes/cards.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/error.ejs" afterPath="$PROJECT_DIR$/views/error.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/users.js" afterPath="$PROJECT_DIR$/routes/users.js" />
     </list>
     <ignored path="indegsWeb.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,20 +28,20 @@
     <splitter split-orientation="horizontal" split-proportion="0.4491472">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-12.088235">
-                  <caret line="86" column="13" selection-start-line="86" selection-start-column="13" selection-end-line="86" selection-end-column="13" />
+                <state vertical-scroll-proportion="0.69627">
+                  <caret line="55" column="2" selection-start-line="55" selection-start-column="2" selection-end-line="57" selection-end-column="12" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="error.ejs" pinned="false" current-in-tab="true">
+          <file leaf-file-name="error.ejs" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/views/error.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.23374341">
+                <state vertical-scroll-proportion="-4.75">
                   <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
                   <folding />
                 </state>
@@ -51,8 +51,8 @@
           <file leaf-file-name="main.ejs" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/views/main.ejs">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-7.75">
-                  <caret line="25" column="36" selection-start-line="0" selection-start-column="0" selection-end-line="39" selection-end-column="24" />
+                <state vertical-scroll-proportion="-16.285715">
+                  <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
                   <folding />
                 </state>
               </provider>
@@ -92,21 +92,21 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-          <file leaf-file-name="cards.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="cards.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/cards.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.07872697">
-                  <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+                <state vertical-scroll-proportion="29.11111">
+                  <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="images.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="images.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/images.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="16" column="42" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
+                <state vertical-scroll-proportion="0.37353435">
+                  <caret line="20" column="20" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="20" />
                   <folding />
                 </state>
               </provider>
@@ -115,18 +115,8 @@
           <file leaf-file-name="admin.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/admin.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="159" column="45" selection-start-line="159" selection-start-column="45" selection-end-line="159" selection-end-column="45" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="admin_user.ejs" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/views/admin/admin_user.ejs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+                <state vertical-scroll-proportion="-5.1944447">
+                  <caret line="133" column="25" selection-start-line="133" selection-start-column="25" selection-end-line="133" selection-end-column="25" />
                   <folding />
                 </state>
               </provider>
@@ -145,8 +135,8 @@
           <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/users.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-11.176471">
-                  <caret line="47" column="36" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
+                <state vertical-scroll-proportion="-6.2058825">
+                  <caret line="233" column="19" selection-start-line="233" selection-start-column="19" selection-end-line="233" selection-end-column="19" />
                   <folding />
                 </state>
               </provider>
@@ -156,7 +146,7 @@
             <entry file="file://$PROJECT_DIR$/routes/rest.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+                  <caret line="23" column="32" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="32" />
                   <folding />
                 </state>
               </provider>
@@ -204,13 +194,13 @@
         <option value="$PROJECT_DIR$/views/main.ejs" />
         <option value="$PROJECT_DIR$/routes/images.js" />
         <option value="$PROJECT_DIR$/routes/choose.js" />
-        <option value="$PROJECT_DIR$/routes/admin.js" />
         <option value="$PROJECT_DIR$/views/user_page.ejs" />
         <option value="$PROJECT_DIR$/views/header.ejs" />
-        <option value="$PROJECT_DIR$/routes/users.js" />
-        <option value="$PROJECT_DIR$/routes/cards.js" />
         <option value="$PROJECT_DIR$/views/error.ejs" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/routes/cards.js" />
+        <option value="$PROJECT_DIR$/routes/users.js" />
+        <option value="$PROJECT_DIR$/routes/admin.js" />
       </list>
     </option>
   </component>
@@ -597,7 +587,13 @@
       <option name="project" value="LOCAL" />
       <updated>1456728383859</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="cards author fixing and made error page">
+      <created>1456744581712</created>
+      <option name="number" value="00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1456744581712</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TodoView">
@@ -685,7 +681,8 @@
     <MESSAGE value="add admin nav" />
     <MESSAGE value="add My Page" />
     <MESSAGE value="add session user_id" />
-    <option name="LAST_COMMIT_MESSAGE" value="add session user_id" />
+    <MESSAGE value="cards author fixing and made error page" />
+    <option name="LAST_COMMIT_MESSAGE" value="cards author fixing and made error page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -932,14 +929,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/admin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="159" column="45" selection-start-line="159" selection-start-column="45" selection-end-line="159" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/admin/admin_user.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -985,42 +974,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/rest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/images.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="42" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/main.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.75">
-          <caret line="25" column="36" selection-start-line="0" selection-start-column="0" selection-end-line="39" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/auth/header.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.033391915">
           <caret line="16" column="50" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.176471">
-          <caret line="47" column="36" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -1033,14 +990,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.088235">
-          <caret line="86" column="13" selection-start-line="86" selection-start-column="13" selection-end-line="86" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/credentials.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1049,26 +998,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/header.ejs">
+    <entry file="file://$PROJECT_DIR$/views/error.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23374341">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state vertical-scroll-proportion="-4.75">
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/error.ejs">
+    <entry file="file://$PROJECT_DIR$/views/header.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23374341">
-          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.66608083">
+          <caret line="79" column="16" selection-start-line="79" selection-start-column="16" selection-end-line="79" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/main.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.285715">
+          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.69627">
+          <caret line="55" column="2" selection-start-line="55" selection-start-column="2" selection-end-line="57" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/cards.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07872697">
-          <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+        <state vertical-scroll-proportion="29.11111">
+          <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.1944447">
+          <caret line="133" column="25" selection-start-line="133" selection-start-column="25" selection-end-line="133" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.2058825">
+          <caret line="233" column="19" selection-start-line="233" selection-start-column="19" selection-end-line="233" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/rest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="32" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/images.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37353435">
+          <caret line="20" column="20" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="20" />
           <folding />
         </state>
       </provider>

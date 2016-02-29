@@ -20,7 +20,6 @@ router.get('/', function(req, res, next) {
             console.log('로그인상태: ' + req.session.isLogin);
             console.log('사용자정보: ' + req.session.userinfo.useremail + ', ' + req.session.userinfo.username + ', ' + req.session.isAdmin);
         }
-        console.log(getObj);
         if(getObj.status || !err) {
             res.statusCode = httpResponse.statusCode;
             //res.render('cards', getObj);
@@ -33,7 +32,9 @@ router.get('/', function(req, res, next) {
             });
         } else {
             //res.statusCode = response.getCode();
-            res.send('404 페이지 or 해당코드 페이지'+ getObj.msg);
+            var err = new Error('Not Found');
+            err.status = httpResponse.statusCode;
+            next(err);
         }
     });
 });
@@ -103,8 +104,9 @@ router.get('/:card_id', function(req, res, next) {
             });
 
         } else {
-            res.statusCode = httpResponse.statusCode;
-            res.send('404 페이지 or 해당코드 페이지'+getObj.msg);
+            var err = new Error('Not Found');
+            err.status = httpResponse.statusCode;
+            next(err);
         }
     });
 });
@@ -134,8 +136,9 @@ router.post('/', function(req, res, next) {
                 res.statusCode = httpResponse.statusCode;
                 res.redirect(credentials.host_server+'/cards/'+getObj.data)
             } else {
-                res.statusCode = httpResponse.statusCode;
-                res.send('404 페이지 or 해당코드 페이지'+ getObj.msg);
+                var err = new Error('Not Found');
+                err.status = httpResponse.statusCode;
+                next(err);
             }
         });
     }
@@ -291,8 +294,9 @@ router.post('/vote/:card_id/:image_id', function(req, res, next) {
                 res.statusCode = httpResponse.statusCode;
                 res.redirect(credentials.host_server+'/cards/'+data.card_id)
             } else {
-                res.statusCode = httpResponse.statusCode;
-                res.send('404 페이지 or 해당코드 페이지'+ getObj.msg);
+                var err = new Error('Not Found');
+                err.status = httpResponse.statusCode;
+                next(err);
             }
         });
     }
@@ -322,8 +326,9 @@ router.get('/vote/:card_id/:image_id/:vote_title', function(req, res, next) {
                 res.statusCode = httpResponse.statusCode;
                 res.redirect(credentials.host_server+'/cards/'+data.card_id)
             } else {
-                res.statusCode = httpResponse.statusCode;
-                res.send('404 페이지 or 해당코드 페이지'+ getObj.msg);
+                var err = new Error('Not Found');
+                err.status = httpResponse.statusCode;
+                next(err);
             }
         });
     }
